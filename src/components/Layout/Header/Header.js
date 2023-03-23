@@ -165,6 +165,7 @@ function Header()  {
 		setAddress(null);
 		setAccount(null);
 		setWeb3Obj(null);
+		history.push('/');
 	}
 
 	return(

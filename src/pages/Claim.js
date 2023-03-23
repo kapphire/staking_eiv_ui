@@ -5,6 +5,7 @@ import { makeStyles } from 'tss-react/mui';
 import eivAbi from '../artifacts/contracts/EIVToken.sol/EIVToken.json';
 import multisigAbi from '../artifacts/contracts/MultiSigWallet.sol/MultiSigWallet.json';
 import { AccountContext } from "../Contexts/AccountContext";
+import { useHistory } from "react-router-dom";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -40,6 +41,7 @@ const useStyles = makeStyles()(theme => ({
 function Claim()  {
 	const { classes } = useStyles();
 	const { account } = useContext(AccountContext);
+	const history = useHistory();
 
 	const [companyBalance, setCompanyBalance] = useState(0);
 	const [teamBalance, setTeamBalance] = useState(0);
@@ -53,6 +55,8 @@ function Claim()  {
 	const CTO_WALLET = process.env.REACT_APP_CTO_WALLET.toLowerCase();
 	const AD_WALLET = process.env.REACT_APP_AD_WALLET.toLowerCase();
 	const COMPANY_WALLET = process.env.REACT_APP_COMPANY_WALLET.toLowerCase();
+
+	const APPROVERS = [CEO_WALLET, CTO_WALLET, AD_WALLET, COMPANY_WALLET];
 
 	const CLAIM = Web3.utils.keccak256('CLAIM');
 	const TEAM = Web3.utils.keccak256('TEAM');
@@ -97,6 +101,14 @@ function Claim()  {
 		});
 	}, [])
 
+	useEffect(() => {
+		if (account) {
+			if (!APPROVERS.includes(account)) {
+				history.push('/');
+			}
+		}
+	}, [account])
+
 	const claim = async() => {
 		let data;
 		if(account === COMPANY_WALLET) {
@@ -110,6 +122,9 @@ function Claim()  {
 		}
 		else if(account === AD_WALLET) {
 			data = COMMUNITY;
+		} else {
+			alert("Idiot");
+			return
 		}
 
 		await multisigContract.methods.submitTransaction(data).send({from: account});
@@ -209,7 +224,7 @@ function Claim()  {
 			</Grid>
 			<Grid container spacing={3}>
 				<Grid item lg={12} md={12}>
-					<Button onClick={() => claim()} className={classes.claimBtn}>{account === COMPANY_WALLET ? 'Claim Tokens' : ''}
+					<Button onClick={() => claim()} className={classes.claimBtn}>{account === COMPANY_WALLET ? 'Claim Tokens' : 'Idiot'}
 					{account === CEO_WALLET ? 'Claim Team Tokens' : ''}
 					{account === CTO_WALLET ? 'Claim Advisor Tokens' : ''}
 					{account === AD_WALLET ? 'Claim Community Tokens' : ''}

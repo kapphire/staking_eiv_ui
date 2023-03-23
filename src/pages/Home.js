@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Box, Typography, Grid, Button } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
 import MetaGamZLogo from '../favicon.png';
@@ -9,6 +9,7 @@ import metagAbi from '../artifacts/contracts/ERC20Interface.sol/ERC20Interface.j
 import Web3 from "web3";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { AccountContext } from "../Contexts/AccountContext";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
