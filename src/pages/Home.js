@@ -268,15 +268,15 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 					  <Box className={classes.upperBox}>
 						  <Box>
 							  <img className={classes.img} src={MetaGamZLogo} alt={MetaGamZLogo} />
-							  <Typography className={classes.logoTitle}>MetagamZ</Typography>
-							  <Typography className={classes.logoText}>Stake MetaG Earn MetaG</Typography>
+							  <Typography className={classes.logoTitle}>EIV Token</Typography>
+							  <Typography className={classes.logoText}>Stake EIV Earn EIV</Typography>
 						  </Box>
 						  <Box>
-							  <Typography className={classes.logoTableHeader}>MetaG Earned</Typography>
+							  <Typography className={classes.logoTableHeader}>EIV Earned</Typography>
 							  <Typography className={classes.logoTableText}>{(parseFloat(reward) + parseFloat(pendingReward)).toFixed(5)}</Typography>
 						  </Box>
 						  <Box>
-							  <Typography className={classes.logoTableHeader}>MetaG Staked</Typography>
+							  <Typography className={classes.logoTableHeader}>EIV Staked</Typography>
 							  <Typography className={classes.logoTableText}>{parseFloat(staked).toFixed(5)}</Typography>
 						  </Box>
 						  <Box>
@@ -295,12 +295,12 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 					  <Box className={classes.downBox}>
 						  <Typography className={classes.downText}>Chain: Avax</Typography>					
 						  <Typography className={classes.downText}>View Project Site</Typography>					
-						  <Typography className={classes.downText}>Buy MetaG</Typography>					
+						  <Typography className={classes.downText}>Buy EIV</Typography>					
 					  </Box>
 				  </Grid>
 				  <Grid className={classes.gridContainer} item lg={4} md={4} sm={12} xs={12}>
 					  <Box className={classes.downBox}>
-						  <Typography className={classes.downText}>MetaG Earned</Typography>	
+						  <Typography className={classes.downText}>EIV Earned</Typography>	
 						  <Box className={classes.collectBox}>
 							  <Typography className={classes.downValue}>{(parseFloat(reward) + parseFloat(pendingReward)).toFixed(5)}</Typography>						
 							  {account && <Button className={classes.collectBtn} onClick={claim}>Collect</Button>}
